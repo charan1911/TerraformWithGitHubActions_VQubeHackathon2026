@@ -25,6 +25,9 @@ resource "aws_instance" "public_instance" {
 
     # Install Prometheus
     ${file("${path.module}/scripts/install_prometheus.sh")}
+
+    # Install EKS
+    ${file("${path.module}/scripts/install_eks_tools.sh")}
   EOF
 
   tags = {

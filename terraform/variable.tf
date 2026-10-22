@@ -39,3 +39,34 @@ variable "vpc_cidr1" {
   type        = string
   default     = ""
 }
+
+variable "vpc_cidr2" {
+  description = "CIDR block for the public subnet"
+  type        = string
+  default     = ""
+}
+
+variable "vpc_cidr3" {
+  description = "CIDR block for the public subnet"
+  type        = string
+  default     = ""
+}
+
+
+variable "private_cidr1" {
+  description = "CIDR block for private subnet in AZ A"
+  type        = string
+  default     = "10.0.11.0/24"
+}
+
+variable "private_cidr2" {
+  description = "CIDR block for private subnet in AZ B"
+  type        = string
+  default     = "10.0.12.0/24"
+}
+
+variable "private_cidr3" {
+  description = "CIDR block for private subnet in AZ C"
+  type        = string
+  default     = "10.0.13.0/24"
+}

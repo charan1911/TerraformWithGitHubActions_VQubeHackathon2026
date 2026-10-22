@@ -5,3 +5,5 @@ vpc_route_table = "RouteTable"
 ami_id          = "ami-0cede6fe40e6ac719" # Replace with a valid AMI ID for your region
 instance_type   = "t3.medium"             # Replace with your desired instance type
 vpc_cidr1       = "10.0.1.0/24"           # CIDR block for the public subnet
+vpc_cidr2       = "10.0.2.0/24"           # CIDR block for the public subnet
+vpc_cidr3       = "10.0.3.0/24"           # CIDR block for the public subnet
