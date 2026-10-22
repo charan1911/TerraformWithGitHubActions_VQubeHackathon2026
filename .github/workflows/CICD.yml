@@ -36,11 +36,11 @@ jobs:
         with:
           registry-type: public
 
+
       - name: Tag and push image
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
           docker tag cloudshield-app:latest \
-            $REGISTRY/cloudshield-public-repo:latest
+            public.ecr.aws/u7t1z1q1/cloudshield-public-repo:latest
 
-          docker push $REGISTRY/cloudshield-public-repo:latest
+          docker push \
+            public.ecr.aws/u7t1z1q1/cloudshield-public-repo:latest
