@@ -1,3 +1,4 @@
+
 resource "aws_instance" "public_instance" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
@@ -28,7 +29,16 @@ resource "aws_instance" "public_instance" {
 
     # Install EKS
     ${file("${path.module}/scripts/install_eks_tools.sh")}
+
+    #Install K8S
+    ${file("${path.module}/scripts/install_k8s.sh")}
   EOF
+
+  root_block_device {
+    volume_size           = 20
+    volume_type           = "gp3"
+    delete_on_termination = true
+  }
 
   tags = {
     Name = "${var.project_name}-PublicInstance"
