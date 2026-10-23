@@ -8,7 +8,7 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 echo "Starting EKS tools installation..."
 
 # Install prerequisites
-dnf install -y curl unzip tar gzip
+dnf install -y unzip tar gzip
 
 # Install AWS CLI v2 if missing
 if ! command -v aws >/dev/null 2>&1; then

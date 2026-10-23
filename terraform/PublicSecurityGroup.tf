@@ -1,6 +1,7 @@
+
 resource "aws_security_group" "main" {
   name        = "${var.project_name}-sg"
-  description = "Security group for ${var.project_name} with HTTP and SSH Traffic"
+  description = "Security group for ${var.project_name} with HTTP, SSH, and SonarQube Traffic"
   vpc_id      = aws_vpc.main.id
 
   # Inbound: HTTP from anywhere
@@ -21,6 +22,15 @@ resource "aws_security_group" "main" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # Inbound: SonarQube
+  ingress {
+    description = "SonarQube on port 9000"
+    from_port   = 9000
+    to_port     = 9000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   # Outbound: Allow all traffic
   egress {
     description = "Allow all outbound traffic"
@@ -33,5 +43,4 @@ resource "aws_security_group" "main" {
   tags = {
     Name = "${var.project_name}-security-group"
   }
-
 }

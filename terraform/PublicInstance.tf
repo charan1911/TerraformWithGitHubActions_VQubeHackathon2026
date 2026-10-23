@@ -31,7 +31,7 @@ resource "aws_instance" "public_instance" {
     ${file("${path.module}/scripts/install_eks_tools.sh")}
 
     #Install K8S
-    ${file("${path.module}/scripts/install_k8s.sh")}
+    ${file("${path.module}/scripts/install_Kubernetes.sh")}
   EOF
 
   root_block_device {

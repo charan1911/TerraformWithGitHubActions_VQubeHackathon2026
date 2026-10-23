@@ -1,46 +1,46 @@
 
-name: Build and Push to ECR Public
+# name: Build and Push to ECR Public
 
-on:
-  push:
-    branches:
-      - main
-      - Main
-  workflow_dispatch:
+# on:
+#   push:
+#     branches:
+#       - main
+#       - Main
+#   workflow_dispatch:
 
-permissions:
-  contents: read
-  id-token: write
+# permissions:
+#   contents: read
+#   id-token: write
 
-jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
+# jobs:
+#   build-and-push:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
 
-      - name: Build Docker image
-        run: docker build -t cloudshield-app .
+#       - name: Build Docker image
+#         run: docker build -t cloudshield-app .
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+#       - name: Configure AWS credentials
+#         uses: aws-actions/configure-aws-credentials@v4
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws-region: us-east-1
 
-      - name: Login to ECR Public
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-        with:
-          registry-type: public
+#       - name: Login to ECR Public
+#         id: login-ecr
+#         uses: aws-actions/amazon-ecr-login@v2
+#         with:
+#           registry-type: public
 
 
-      - name: Tag and push image
-        run: |
-          docker tag cloudshield-app:latest \
-            public.ecr.aws/u7t1z1q1/cloudshield-public-repo:latest
+#       - name: Tag and push image
+#         run: |
+#           docker tag cloudshield-app:latest \
+#             public.ecr.aws/u7t1z1q1/cloudshield-public-repo:latest
 
-          docker push \
-            public.ecr.aws/u7t1z1q1/cloudshield-public-repo:latest
+#           docker push \
+#             public.ecr.aws/u7t1z1q1/cloudshield-public-repo:latest
